@@ -8,8 +8,9 @@
   <!-- viewport  -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- fonts  -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Spinnaker" rel="stylesheet">
   <!-- styles -->
+  <link rel="stylesheet" type="text/css" href="float-grid.css">
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
@@ -17,16 +18,17 @@
 		<h1>California Quiz</h1>
 	</header>
 	<!-- First Page Content-->
-	<div class="page-1">
-		<h2>How Much Do You Know About The Golden State?</h2>
-		<button type="button">Start</button>
+	<div class="page-1 row hidden">
+		<h2 class="overall-question">How Much Do You Know About The Golden State?</h2>
+		<button class="start" type="button">Start</button>
 	</div>
 	<!-- Second Page Content-->
-	<div class="page-2 hidden">
-		<h2>Question 1 PLACEHOLDER<span>1 of 5 PLACEHOLDER</span></h2>
+	<div class="page-2 row">
+			<p class="current-question">1 of 5</p>
+			<h2 class="question-num">Question 1</h2>
 		<form action="/some-server-endpoint" method='post'>
 			<h3>Question 1 PLACEHOLDER</h3>
-			<fieldset>
+			<fieldset class="radio-group">
 				<input type="radio" name="answer" id="answer1" value="answer1">
 					<label for="answer1">PLACEHOLDER ANSWER 1</label> <br>
 				<input type="radio" name="answer" id="answer2" value="answer2">
@@ -40,10 +42,10 @@
 				<button type="submit">Submit</button>
 			</fieldset>
 		</form>	
-		<p>Current Score:</p>
+		<p class="score">Current Score:</p>
 	</div>
 	<!-- First Page Content-->
-	<div class="page-3 hidden">
+	<div class="page-3 row hidden">
 		<h2>Final Score</h2>
 		<p>100% <br> A True Californian!</p>
 		<button type="submit">Start Over</button>
