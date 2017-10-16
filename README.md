@@ -1,0 +1,1 @@
+This repo consists of files for the California Quiz for Thinkful's Front End Web Development Course.
