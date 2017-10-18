@@ -1,5 +1,5 @@
 body {
-	background: url(../quiz-app/images/california.jpg) no-repeat center;
+	background: url(images/california.jpg) no-repeat center;
 	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Spinnaker', sans-serif;
@@ -25,9 +25,8 @@ h1 {
 
 /*First Page Styles*/
 .page-1 {
-	background-color: rgba(196, 196, 196, 0.8);
 	text-align: center;
-	margin-top: 175px;
+	margin-top: 20%;
 }
 
 .overall-question {
@@ -51,9 +50,12 @@ h1 {
 
 /*Second Page Styles*/
 .page-2 {
+	margin: 4% auto;
+}
+
+.page{
 	background-color: rgba(196, 196, 196, 0.8);
 	padding: 20px;
-	margin: auto;
 }
 
 form {
@@ -77,7 +79,7 @@ form {
 }
 
 .question-num {
-	font-size: 30px; 
+	font-size: 30px;
 	padding: 5px;
 	margin: auto;
 	border-bottom: solid thin lightgrey;
@@ -137,11 +139,11 @@ input[type=radio]:checked + label{
 
 /*Third Page Styles*/
 .page-3 {
-	background-color: rgba(196, 196, 196, 0.8);
-	padding: 20px;	
-	text-align: center;
 	margin-top: 85px;
+	text-align: center;
 }
+
+
 
 .final-score {
 	font-size: 30px;
