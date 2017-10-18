@@ -12,12 +12,12 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Spinnaker', sans-serif;
+	text-align: center;
 }
 
 h1 {
 	border-bottom: 5px solid white;
 	background-color: #373737;
-	text-align: center;
 	margin: 0px;
 	padding: 10px;
 	color: white;
@@ -30,6 +30,7 @@ h1 {
 	display: none;
 }
 
+/*First Page Styles*/
 .page-1 {
 	background-color: rgba(196, 196, 196, 0.8);
 	position: absolute;
@@ -37,8 +38,6 @@ h1 {
 	width: 100%;
 	height: 100px;
 	padding: 12px;
-	text-align: center;
-	
 }
 
 .overall-question {
@@ -54,53 +53,118 @@ h1 {
 	font-size: 25px;
 }
 
+/*Second Page Styles*/
 .page-2 {
 	background-color: rgba(196, 196, 196, 0.88);
+	width: 75%;
+	padding: 20px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10%;
-	margin-bottom: 10%;
-	width: 35%;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 form {
 	background-color: #C4C4C4;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 60%;
 }
 
 .score {
-	text-align: center;
+	display: block;
 	background-color: #548F8B;
 	border-radius: 8px;
 	color: white;
 	padding: 5px;
+	margin: auto;
+	width: 50%;
 }
 
 .question-num {
-	text-align: center;
 	font-size: 30px; 
-	margin: 5px;
+	padding: 5px;
+	margin: auto;
+	border-bottom: solid thin lightgrey;
 }
 
 .current-question {
 	font-size: 16px;
-	text-align: right;
 	padding: 5px;
 	margin: auto;
 }
 
-h3 {
-	text-align: center;
+.question-line {
 	margin: 0px;
-}
-
-fieldset {
 	padding: 10px;
 }
 
+fieldset {
+	padding: 20px;
+	border: none;
+}
+
+input[type=radio]:checked + label{
+	color: #548F8B;
+}
+
+.radio-group input, .radio-group label {
+	cursor: pointer;
+}
+
 .radio-group input {
-	text-align: left;
+	margin: 20px;
 }
 
 .radio-group label {
 	vertical-align: middle;
 }
+
+.submit {
+	display: block;
+	margin: auto;
+	background-color: white;
+	color: #548F8B;
+	border-radius: 8px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 25px;
+}
+
+.submit:hover {
+	background-color: lightgrey;
+}
+
+
+/*Third Page Styles*/
+.page-3 {
+	background-color: rgba(196, 196, 196, 0.88);
+	padding: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 75px;
+	margin-bottom: 75px;
+}
+
+.final-score {
+	font-size: 30px;
+	margin: auto;
+}
+
+.results {
+	background-color: #C4C4C4;
+	padding: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 60%;
+}
+
+.results p {
+	font-size: 26px;
+}
+
