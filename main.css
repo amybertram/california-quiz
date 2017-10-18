@@ -23,6 +23,11 @@ h1 {
 	display: none;
 }
 
+.page{
+	background-color: rgba(196, 196, 196, 0.8);
+	padding: 20px;
+}
+
 /*First Page Styles*/
 .page-1 {
 	text-align: center;
@@ -53,22 +58,14 @@ h1 {
 	margin: 4% auto;
 }
 
-.page{
-	background-color: rgba(196, 196, 196, 0.8);
-	padding: 20px;
-}
 
 form {
 	background-color: #C4C4C4;
 	padding: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin: 2% auto;
 }
 
 .score {
-	display: block;
 	background-color: #548F8B;
 	border-radius: 8px;
 	color: white;
@@ -101,7 +98,7 @@ form {
 
 fieldset {
 	border: none;
-	padding: 30px;
+	padding: 15px;
 }
 
 input[type=radio]:checked + label{
@@ -113,7 +110,7 @@ input[type=radio]:checked + label{
 }
 
 .radio-group input {
-	margin: 20px;
+	margin: 1%;
 }
 
 .radio-group label {
@@ -139,11 +136,9 @@ input[type=radio]:checked + label{
 
 /*Third Page Styles*/
 .page-3 {
-	margin-top: 85px;
+	margin-top: 15%;
 	text-align: center;
 }
-
-
 
 .final-score {
 	font-size: 30px;
@@ -166,5 +161,9 @@ input[type=radio]:checked + label{
 @media only screen and (max-width: 640px) {
 	h1 {
 	font-size: 30px;
+	}
+
+	.radio-group {
+	font-size: 14px;
 	}
 }
