@@ -31,7 +31,7 @@ h1 {
 /*First Page Styles*/
 .page-1 {
 	text-align: center;
-	margin-top: 20%;
+	margin-top: 15%;
 }
 
 .overall-question {
@@ -62,7 +62,7 @@ h1 {
 form {
 	background-color: #C4C4C4;
 	padding: 20px;
-	margin: 2% auto;
+	margin: auto;
 }
 
 .score {
@@ -117,8 +117,8 @@ input[type=radio]:checked + label{
 	vertical-align: middle;
 }
 
-.submit {
-	margin: auto;
+.submission {
+	margin: 10px auto;
 	background-color: white;
 	color: #548F8B;
 	border-radius: 8px;
@@ -126,10 +126,9 @@ input[type=radio]:checked + label{
 	cursor: pointer;
 	font-size: 25px;
 	display: block;
-	margin: auto;
 }
 
-.submit:hover {
+.submission:hover {
 	background-color: lightgrey;
 }
 
