@@ -35,7 +35,7 @@ h1 {
 }
 
 .overall-question {
-	margin: 0px;
+	margin: 5px;
 	font-size: 26px;
 }
 
@@ -63,6 +63,10 @@ form {
 	background-color: #C4C4C4;
 	padding: 20px;
 	margin: auto;
+}
+
+.score-container {
+	text-align: center;
 }
 
 .score {

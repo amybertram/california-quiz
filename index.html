@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<title>California Quiz</title>
-	<meta charset="utf-8" name="description" content="Quiz about the state of California">
-	<!-- reset -->
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
-	<!-- viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> -->
+<title>California Quiz</title>
+<meta charset="utf-8" name="description" content="Quiz about the state of California">
+<!-- reset -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+<!-- viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> -->
 
-	<!-- fonts  -->
-	<link href="https://fonts.googleapis.com/css?family=Spinnaker" rel="stylesheet">
-	<!-- styles -->
-	<link rel="stylesheet" type="text/css" href="float-grid.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
+<!-- fonts  -->
+<link href="https://fonts.googleapis.com/css?family=Spinnaker" rel="stylesheet">
+<!-- styles -->
+<link rel="stylesheet" type="text/css" href="float-grid.css">
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<header>
@@ -23,57 +23,57 @@
 			</div>
 		</div>
 	</header>
+	
 	<main>
-		<!-- First Page Content-->
-		<div class="page-1">
-			<div class="row">
-				<div class="col-12 page">
-					<h2 class="overall-question">How Much Do You Know About The Golden State?</h2>
-					<button class="start js-start" type="button">Start</button>
+	<!-- First Page Content-->
+	<div class="page-1">
+		<div class="row">
+			<div class="col-12 page">
+				<h2 class="overall-question">How Much Do You Know About The Golden State?</h2>
+				<button class="start js-start" type="button">Start</button>
+			</div>
+		</div>
+	</div>
+	<!-- Second Page Content-->
+	<div class="page-2 hidden">
+		<div class="row">
+			<div class="col-12 page">
+				<div class="js-state"></div>
+				<form action="" class="js-question-set" id="questionform">
+					<!-- IN JS FILE
+					<h3 class="question-line">Question 1 PLACEHOLDER</h3>
+					<fieldset class="radio-group ">
+						<input type="radio" name="answer" id="answer1" value="answer1">
+						<label for="answer1">PLACEHOLDER ANSWER 1</label> <br>
+						<input type="radio" name="answer" id="answer2" value="answer2">
+						<label for="answer2">PLACEHOLDER ANSWER 2</label> <br>
+						<input type="radio" name="answer" id="answer3" value="answer3">
+						<label for="answer3">PLACEHOLDER ANSWER 3</label> <br>
+						<input type="radio" name="answer" id="answer4" value="answer4">
+						<label for="answer4">PLACEHOLDER ANSWER 4</label> <br>
+						<input type="radio" name="answer" id="answer5" value="answer5">
+						<label for="answer5">PLACEHOLDER ANSWER 5</label> <br>
+					</fieldset> -->
+				</form>
+				<button type="button" class="submission js-button" form="questionform">Submit</button>
+				<div class="score-container js-score"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Third Page Content-->
+	<div class="page-3 hidden">
+		<div class="row">
+			<div class="col-12 page">
+				<h2 class="final-score">Final Score</h2>
+				<div class="results">
+					<p>100% <br> A True Californian!</p>
+					<button type="button" class="submission js-start-over">Start Over</button>
 				</div>
 			</div>
 		</div>
-		<!-- Second Page Content-->
-		<div class="page-2 hidden">
-			<div class="row">
-				<div class="col-12 page">
-					<h2 class="question-num js-state">Question 1</h2>
-					<h3 class="current-question js-state">1 of 5</h3>
-					<form action="" class="js-question-set" id="questionform">
-						<!-- IN JS FILE
-						<h3 class="question-line">Question 1 PLACEHOLDER</h3>
-						<fieldset class="radio-group ">
-							<input type="radio" name="answer" id="answer1" value="answer1">
-							<label for="answer1">PLACEHOLDER ANSWER 1</label> <br>
-							<input type="radio" name="answer" id="answer2" value="answer2">
-							<label for="answer2">PLACEHOLDER ANSWER 2</label> <br>
-							<input type="radio" name="answer" id="answer3" value="answer3">
-							<label for="answer3">PLACEHOLDER ANSWER 3</label> <br>
-							<input type="radio" name="answer" id="answer4" value="answer4">
-							<label for="answer4">PLACEHOLDER ANSWER 4</label> <br>
-							<input type="radio" name="answer" id="answer5" value="answer5">
-							<label for="answer5">PLACEHOLDER ANSWER 5</label> <br>
-						</fieldset> -->
-					</form>
-					<button type="button" class="submission js-button" form="questionform">Submit</button>
-					<p class="score js-state">Current Score:</p>
-				</div>
-			</div>
-		</div>
-		<!-- First Page Content-->
-		<div class="page-3 hidden">
-			<div class="row">
-				<div class="col-12 page">
-					<h2 class="final-score">Final Score</h2>
-					<div class="results">
-						<p>100% <br> A True Californian!</p>
-						<button type="button" class="submission js-start-over">Start Over</button>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
 	</main>
-	<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
-	<script type="text/javascript" src="app.js"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
