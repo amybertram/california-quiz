@@ -55,7 +55,14 @@
 						<label for="answer5">PLACEHOLDER ANSWER 5</label> <br>
 					</fieldset> -->
 				</form>
-				<button type="button" class="submission js-button" form="questionform">Submit</button>
+				<div class="buttons">
+					<div class="button-1">
+					<button type="button" class="submission js-button" form="questionform">Submit</button>
+					</div>
+					<div class="button-2 hidden">
+					<button type="button" class="submission js-next">Next</button>
+					</div>
+				</div>
 				<div class="score-container js-score"></div>
 			</div>
 		</div>
@@ -65,10 +72,10 @@
 		<div class="row">
 			<div class="col-12 page">
 				<h2 class="final-score">Final Score</h2>
-				<div class="results">
+				<div class="results js-results">
 					<p>100% <br> A True Californian!</p>
-					<button type="button" class="submission js-start-over">Start Over</button>
-				</div>
+				</div>	
+				<button type="button" class="submission js-start-over">Start Over</button>
 			</div>
 		</div>
 	</div>

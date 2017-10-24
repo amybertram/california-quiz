@@ -121,7 +121,11 @@ input[type=radio]:checked + label{
 	vertical-align: middle;
 }
 
-.submission {
+.buttons {
+	text-align: center;
+}
+
+.submission{
 	margin: 10px auto;
 	background-color: white;
 	color: #548F8B;
@@ -129,11 +133,23 @@ input[type=radio]:checked + label{
 	padding: 5px;
 	cursor: pointer;
 	font-size: 25px;
-	display: block;
+	display: inline-block;
 }
 
 .submission:hover {
 	background-color: lightgrey;
+}
+
+.incorrect {
+	text-decoration: line-through;
+	color: red;
+}
+
+.correct {
+	color: white;
+	background-color: #28a428;
+	padding: 5px;
+	border-radius: 8px;
 }
 
 
