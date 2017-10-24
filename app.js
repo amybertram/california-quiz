@@ -66,6 +66,30 @@ function showPageTwo() {
   $('.page-2').removeClass('hidden');
 } 
 
+function buttonSubmit(){
+  $('.button-2').removeClass('hidden');
+  $('.button-1').addClass('hidden');
+  $('.js-button').attr('disabled', 'disabled');
+}
+
+function showAnswer(){
+  var answerValue = questions[state.questionNumber].correctAnswer();
+  var selectedAnswer = $('label:has(input:radio:checked)');
+  if (selectedAnswer.text().trim() === answerValue) {
+    state.score++;
+  } else {
+    state.incorrectScore++
+    selectedAnswer.addClass('incorrect');
+  }
+  $('label:contains("' + answerValue + '")').addClass('correct')
+}
+
+function buttonNext(){
+  $('.button-1').removeClass('hidden');
+  $('.button-2').addClass('hidden');
+  $('.js-button').removeAttr('disabled', 'disabled');
+}
+
 function nextQuestion() {
   if(state.questionNumber < 9) {
     state.questionNumber++
@@ -81,30 +105,6 @@ function showPageOne(){
   state.incorrectScore=0
   $('.page-3').addClass('hidden');
   $('.page-1').removeClass('hidden');
-}
-
-function buttonSubmit(){
-  $('.button-2').removeClass('hidden');
-  $('.button-1').addClass('hidden');
-  $('.js-button').attr('disabled', 'disabled');
-}
-
-function buttonNext(){
-  $('.button-1').removeClass('hidden');
-  $('.button-2').addClass('hidden');
-  $('.js-button').removeAttr('disabled', 'disabled');
-}
-
-function showAnswer(){
-  var answerValue = questions[state.questionNumber].correctAnswer();
-  var selectedAnswer = $('label:has(input:radio:checked)');
-  if (selectedAnswer.text().trim() === answerValue) {
-    state.score++;
-  } else {
-    state.incorrectScore++
-    selectedAnswer.addClass('incorrect');
-  }
-  $('label:contains("' + answerValue + '")').addClass('correct')
 }
 
 
@@ -201,8 +201,8 @@ $(function(){
   renderScore(state, $('.js-score'))
   renderFinalScore(state, $('.js-results'))
   displayQuestions();
-  displayNextQuestion();
   displayAnswer();
+  displayNextQuestion();
   displayStart();
 });
 
