@@ -1,7 +1,8 @@
 // Single state object
 var state = {
   questionNumber:0,
-  score:0
+  score:0,
+  incorrectScore:0
 }
 
 var questions = [
@@ -74,13 +75,10 @@ function nextQuestion() {
   }
 }
 
-function addScore() {
-  state.currentScore++;
-}
-
 function showPageOne(){
   state.questionNumber=0
   state.score=0
+  state.incorrectScore=0
   $('.page-3').addClass('hidden');
   $('.page-1').removeClass('hidden');
 }
@@ -88,11 +86,13 @@ function showPageOne(){
 function buttonSubmit(){
   $('.button-2').removeClass('hidden');
   $('.button-1').addClass('hidden');
+  $('.js-button').attr('disabled', 'disabled');
 }
 
 function buttonNext(){
   $('.button-1').removeClass('hidden');
   $('.button-2').addClass('hidden');
+  $('.js-button').removeAttr('disabled', 'disabled');
 }
 
 function showAnswer(){
@@ -101,6 +101,7 @@ function showAnswer(){
   if (selectedAnswer.text().trim() === answerValue) {
     state.score++;
   } else {
+    state.incorrectScore++
     selectedAnswer.addClass('incorrect');
   }
   $('label:contains("' + answerValue + '")').addClass('correct')
@@ -119,8 +120,9 @@ function renderQuestionNum(state, element){
 
 function renderScore(state, element){
   var currentScore = state.score;
+  var incorrectScore = state.incorrectScore;
   var scoreHTML =
-    '<p class="score">Current Score: ' + currentScore + ' out of 10</p>'
+    '<p class="score">Current Score: ' + currentScore + ' correct, ' + incorrectScore + ' incorrect</p>'
   return element.html(scoreHTML);  
 }
 
@@ -166,12 +168,11 @@ function displayQuestions(){
 //ON SUBMIT - Shows Correct Answer, Changes Button to "Next"
 function displayAnswer(){
   $('.js-button').click(function(event) { 
-  buttonSubmit();  
-  showAnswer();
-  //renderQuestions(questions, $('.js-question-set'));
-  //renderQuestionNum(state, $('.js-state'));
+  if ($('input[type=radio]').is(':checked')){
+    buttonSubmit();  
+    showAnswer();
+    }  
   renderScore(state, $('.js-score'));
-  //renderFinalScore(state, $('.js-results'));
   });
 }
 
@@ -182,7 +183,6 @@ function displayNextQuestion(){
   nextQuestion();
   renderQuestions(questions, $('.js-question-set'));
   renderQuestionNum(state, $('.js-state'));
-  //renderScore(state, $('.js-score'));
   renderFinalScore(state, $('.js-results'));
   });
 }
