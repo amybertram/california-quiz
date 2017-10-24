@@ -80,7 +80,7 @@ function addScore() {
 
 function showPageOne(){
   state.questionNumber=0
-  state.Score=0
+  state.score=0
   $('.page-3').addClass('hidden');
   $('.page-1').removeClass('hidden');
 }
@@ -97,18 +97,14 @@ function buttonNext(){
 
 function showAnswer(){
   var answerValue = questions[state.questionNumber].correctAnswer();
-  var selectedAnswer = $('input[name="answer"]:checked');
+  var selectedAnswer = $('label:has(input:radio:checked)');
+  if (selectedAnswer.text().trim() === answerValue) {
+    state.score++;
+  } else {
+    selectedAnswer.addClass('incorrect');
+  }
   $('label:contains("' + answerValue + '")').addClass('correct')
 }
-    
-  //if ($('label').val() === answerValue) {
-    //$(this).addClass('correct');
-  //}
-    // Get text from label parent
-    //If answer is correct, state.score++
-    //else LABEL.addClass('incorrect')
-   // BOTH INSTANCES, correctAnswer.addClass('correct')
-
 
 
 // Render functions
@@ -133,10 +129,10 @@ function renderQuestions(questions, element){
   var itemsHTML = 
       '<h3 class="question-line">' + currentIndex.question + '</h3>' +
       '<fieldset class="radio-group">' +
-          '<label for="answer1"> <input type="radio" id="answer1" required>' + currentIndex.answers[0] + '</label> <br>' +
-          '<label for="answer2"> <input type="radio" id="answer2">' + currentIndex.answers[1] + '</label> <br>' +
-          '<label for="answer3"> <input type="radio" id="answer3">' + currentIndex.answers[2] + '</label> <br>' +
-          '<label for="answer4"> <input type="radio" id="answer4">' + currentIndex.answers[3] + '</label> <br>' +
+          '<label for="answer1"> <input type="radio" id="answer1" name="answer" required>' + currentIndex.answers[0] + '</label> <br>' +
+          '<label for="answer2"> <input type="radio" id="answer2" name="answer">' + currentIndex.answers[1] + '</label> <br>' +
+          '<label for="answer3"> <input type="radio" id="answer3" name="answer">' + currentIndex.answers[2] + '</label> <br>' +
+          '<label for="answer4"> <input type="radio" id="answer4" name="answer">' + currentIndex.answers[3] + '</label> <br>' +
       '</fieldset>';   
   return element.html(itemsHTML);
 }
@@ -150,7 +146,7 @@ function renderFinalScore(state, element){
   } else {
     finalText = "A true Californian! You make the state proud.";
   }
-  var scoreHTML = '<p> ' + finalScore + '% <br> ' + finalText + ' </p>'
+  var scoreHTML = '<h2> ' + finalScore + '% </h2> <p> ' + finalText + ' </p>'
   return element.html(scoreHTML);
 }
 
@@ -174,7 +170,7 @@ function displayAnswer(){
   showAnswer();
   //renderQuestions(questions, $('.js-question-set'));
   //renderQuestionNum(state, $('.js-state'));
-  //renderScore(state, $('.js-score'));
+  renderScore(state, $('.js-score'));
   //renderFinalScore(state, $('.js-results'));
   });
 }
@@ -186,7 +182,7 @@ function displayNextQuestion(){
   nextQuestion();
   renderQuestions(questions, $('.js-question-set'));
   renderQuestionNum(state, $('.js-state'));
-  renderScore(state, $('.js-score'));
+  //renderScore(state, $('.js-score'));
   renderFinalScore(state, $('.js-results'));
   });
 }
