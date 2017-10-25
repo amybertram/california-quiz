@@ -61,7 +61,7 @@ var questions = [
 
 // Modification functions
 
-function showQuestionPage() {
+function showQuestionsPage() {
   $('.page-1').addClass('hidden');
   $('.page-2').removeClass('hidden');
 }
@@ -84,20 +84,15 @@ function showAnswer(){
   $('label:contains("' + answerValue + '")').addClass('correct')
 }
 
-function buttonNext(){
+function showSubmitButton(){
   $('.button-1').removeClass('hidden');
   $('.button-2').addClass('hidden');
   $('.js-button').removeAttr('disabled', 'disabled');
 }
 
-function nextQuestion() {
-  if(state.questionNumber < 9) {
-    state.questionNumber++
-  } else {
-    $('.page-2').addClass('hidden')
-    $('.page-3').removeClass('hidden');
-  }
-}
+
+
+
 
 function showStartPage(){
   state.questionNumber=0
@@ -110,13 +105,6 @@ function showStartPage(){
 
 // Render functions
 
-function renderQuestionNum(state, element){
-  var questionCount = state.questionNumber+1;
-  var questionNumHTML =
-  '<h2 class="question-num">' + 'Question ' + questionCount + '</h2>' +
-  '<h2 class="current-question">' + questionCount + ' of 10</h2>';
-  return element.html(questionNumHTML);
-}
 
 function renderCurrentScore(state, element){
   var currentScore = state.score;
@@ -126,7 +114,7 @@ function renderCurrentScore(state, element){
   return element.html(scoreHTML);
 }
 
-function renderQuestions(questions, element){
+function renderQuestion(questions, element){
   var currentIndex = questions[state.questionNumber];
   var itemsHTML =
   `<h3 class="question-line">${currentIndex.question}</h3>
@@ -138,6 +126,18 @@ function renderQuestions(questions, element){
   </fieldset>`
   return element.html(itemsHTML);
 }
+function renderQuestionNum(state, element){
+  var questionCount = state.questionNumber+1;
+  var questionNumHTML =`<h2 class="question-num">Question ${questionCount}</h2>
+   <h2 class="current-question">${questionCount} of 10</h2>`;
+  return element.html(questionNumHTML);
+}
+
+function renderNextQuestion(){
+  renderQuestion(questions, $('.js-question-set'));
+  renderQuestionNum(state, $('.js-state'));
+}
+
 
 function renderFinalScore(state, element){
   var finalScore = (state.score/10)*100;
@@ -158,9 +158,8 @@ function setUpListeners(){
 
   //ON START - Shows Page 2 with Question 1 + Answers
   $('.js-start').click(function(event) {
-    showQuestionPage();
-    renderQuestions(questions, $('.js-question-set'));
-    renderQuestionNum(state, $('.js-state'));
+    showQuestionsPage();
+    renderNextQuestion()
     renderCurrentScore(state, $('.js-score'));
   });
 
@@ -175,11 +174,14 @@ function setUpListeners(){
 
   //ON NEXT - Shows Next Question, Changes Button to "Submit"
   $('.js-next').click(function(event) {
-    buttonNext();
-    nextQuestion();
-    renderQuestions(questions, $('.js-question-set'));
-    renderQuestionNum(state, $('.js-state'));
-    renderFinalScore(state, $('.js-results'));
+    showSubmitButton();
+    state.questionNumber++;
+    if(state.questionNumber >= 9){
+      $('.page-2').addClass('hidden')
+      $('.page-3').removeClass('hidden');
+      renderFinalScore(state, $('.js-results'));
+    }
+    renderNextQuestion()
   });
 
   //ON START OVER - Starts Quiz over at Page 1
@@ -190,10 +192,6 @@ function setUpListeners(){
 
 $(function(){
   setUpListeners();
-  // renderQuestions(questions, $('.js-question-set')); // Renders the first question
-  // renderQuestionNum(state, $('.js-state')); // renders question header.
-  //
-  // renderCurrentScore(state, $('.js-score')) // currentScore
-  // renderFinalScore(state, $('.js-results'))
+
 
 });
