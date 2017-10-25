@@ -66,10 +66,20 @@ function showQuestionsPage() {
   $('.page-2').removeClass('hidden');
 }
 
+function showStartPage(){
+  $('.page-3').addClass('hidden');
+  $('.page-1').removeClass('hidden');
+}
 function showNextButton(){
-  $('.button-2').removeClass('hidden');
-  $('.button-1').addClass('hidden');
+  $('.next-button').removeClass('hidden');
+  $('.submit-button').addClass('hidden');
   $('.js-submit-button').attr('disabled', 'disabled');
+}
+
+function showSubmitButton(){
+  $('.submit-button').removeClass('hidden');
+  $('.next-button').addClass('hidden');
+  $('.js-submit-button').removeAttr('disabled', 'disabled');
 }
 
 function showAnswer(){
@@ -84,33 +94,11 @@ function showAnswer(){
   $('label:contains("' + answerValue + '")').addClass('correct')
 }
 
-function showSubmitButton(){
-  $('.button-1').removeClass('hidden');
-  $('.button-2').addClass('hidden');
-  $('.js-submit-button').removeAttr('disabled', 'disabled');
-}
-
-
-
-
-
-function showStartPage(){
-  state.questionNumber=0
-  state.score=0
-  state.incorrectScore=0
-  $('.page-3').addClass('hidden');
-  $('.page-1').removeClass('hidden');
-}
-
 
 // Render functions
-
-
 function renderCurrentScore(state, element){
-  var currentScore = state.score;
-  var incorrectScore = state.incorrectScore;
   var scoreHTML =
-  '<p class="score">Current Score: ' + currentScore + ' correct, ' + incorrectScore + ' incorrect</p>'
+  '<p class="score">Current Score: ' + state.score + ' correct, ' + state.incorrectScore + ' incorrect</p>'
   return element.html(scoreHTML);
 }
 
@@ -133,13 +121,14 @@ function renderQuestionNum(state, element){
   return element.html(questionNumHTML);
 }
 
-function renderNextQuestion(){
+function renderCurrentQuestion(){
   renderQuestion(questions, $('.js-question-set'));
   renderQuestionNum(state, $('.js-state'));
 }
 
-
-function renderFinalScore(state, element){
+function renderFinalScorePage(state, element){
+  $('.page-2').addClass('hidden')
+  $('.page-3').removeClass('hidden');
   var finalScore = (state.score/10)*100;
   if (finalScore < 50) {
     finalText = "Freshen up your California knowledge and try again!";
@@ -159,7 +148,7 @@ function setUpListeners(){
   //ON START - Shows Page 2 with Question 1 + Answers
   $('.js-start').click(function(event) {
     showQuestionsPage();
-    renderNextQuestion()
+    renderCurrentQuestion();
     renderCurrentScore(state, $('.js-score'));
   });
 
@@ -176,23 +165,16 @@ function setUpListeners(){
   $('.js-next').click(function(event) {
     showSubmitButton();
     state.questionNumber++;
-    if(state.questionNumber<9){
-      renderNextQuestion()
-    }else{
-      $('.page-2').addClass('hidden')
-      $('.page-3').removeClass('hidden');
-      renderFinalScore(state, $('.js-results'));
-    }
+    state.questionNumber<9 ? renderCurrentQuestion() : renderFinalScorePage(state, $('.js-results'));
   });
 
   //ON START OVER - Starts Quiz over at Page 1
   $('.js-start-over').click(function(event) {
+    state = { questionNumber:0, score:0, incorrectScore:0}
     showStartPage();
   });
 }
 
 $(function(){
   setUpListeners();
-
-
 });
