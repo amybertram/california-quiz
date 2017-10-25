@@ -66,10 +66,10 @@ function showQuestionsPage() {
   $('.page-2').removeClass('hidden');
 }
 
-function buttonSubmit(){
+function showNextButton(){
   $('.button-2').removeClass('hidden');
   $('.button-1').addClass('hidden');
-  $('.js-button').attr('disabled', 'disabled');
+  $('.js-submit-button').attr('disabled', 'disabled');
 }
 
 function showAnswer(){
@@ -87,7 +87,7 @@ function showAnswer(){
 function showSubmitButton(){
   $('.button-1').removeClass('hidden');
   $('.button-2').addClass('hidden');
-  $('.js-button').removeAttr('disabled', 'disabled');
+  $('.js-submit-button').removeAttr('disabled', 'disabled');
 }
 
 
@@ -164,24 +164,25 @@ function setUpListeners(){
   });
 
   //ON SUBMIT - Shows Correct Answer, Changes Button to "Next"
-  $('.js-button').click(function(event) {
+  $('.js-submit-button').click(function(event) {
     if ($('input[type=radio]').is(':checked')){
-      buttonSubmit();
+      showNextButton();
       showAnswer();
+      renderCurrentScore(state, $('.js-score'));
     }
-    renderCurrentScore(state, $('.js-score'));
   });
 
   //ON NEXT - Shows Next Question, Changes Button to "Submit"
   $('.js-next').click(function(event) {
     showSubmitButton();
     state.questionNumber++;
-    if(state.questionNumber >= 9){
+    if(state.questionNumber<9){
+      renderNextQuestion()
+    }else{
       $('.page-2').addClass('hidden')
       $('.page-3').removeClass('hidden');
       renderFinalScore(state, $('.js-results'));
     }
-    renderNextQuestion()
   });
 
   //ON START OVER - Starts Quiz over at Page 1
