@@ -82,7 +82,7 @@ function showSubmitButton(){
   $('.js-submit-button').removeAttr('disabled', 'disabled');
 }
 
-function showAnswer(){
+function handleAnswer(){
   var answerValue = questions[state.questionNumber].correctAnswer();
   var selectedAnswer = $('label:has(input:radio:checked)');
   if (selectedAnswer.text().trim() === answerValue) {
@@ -156,7 +156,7 @@ function setUpListeners(){
   $('.js-submit-button').click(function(event) {
     if ($('input[type=radio]').is(':checked')){
       showNextButton();
-      showAnswer();
+      handleAnswer();
       renderCurrentScore(state, $('.js-score'));
     }
   });
