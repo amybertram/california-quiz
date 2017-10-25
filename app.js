@@ -61,10 +61,10 @@ var questions = [
 
 // Modification functions
 
-function showPageTwo() {
+function showQuestionPage() {
   $('.page-1').addClass('hidden');
   $('.page-2').removeClass('hidden');
-} 
+}
 
 function buttonSubmit(){
   $('.button-2').removeClass('hidden');
@@ -99,7 +99,7 @@ function nextQuestion() {
   }
 }
 
-function showPageOne(){
+function showStartPage(){
   state.questionNumber=0
   state.score=0
   state.incorrectScore=0
@@ -113,29 +113,29 @@ function showPageOne(){
 function renderQuestionNum(state, element){
   var questionCount = state.questionNumber+1;
   var questionNumHTML =
-    '<h2 class="question-num">' + 'Question ' + questionCount + '</h2>' +
-    '<h2 class="current-question">' + questionCount + ' of 10</h2>';
-  return element.html(questionNumHTML);  
+  '<h2 class="question-num">' + 'Question ' + questionCount + '</h2>' +
+  '<h2 class="current-question">' + questionCount + ' of 10</h2>';
+  return element.html(questionNumHTML);
 }
 
-function renderScore(state, element){
+function renderCurrentScore(state, element){
   var currentScore = state.score;
   var incorrectScore = state.incorrectScore;
   var scoreHTML =
-    '<p class="score">Current Score: ' + currentScore + ' correct, ' + incorrectScore + ' incorrect</p>'
-  return element.html(scoreHTML);  
+  '<p class="score">Current Score: ' + currentScore + ' correct, ' + incorrectScore + ' incorrect</p>'
+  return element.html(scoreHTML);
 }
 
 function renderQuestions(questions, element){
   var currentIndex = questions[state.questionNumber];
-  var itemsHTML = 
-      '<h3 class="question-line">' + currentIndex.question + '</h3>' +
-      '<fieldset class="radio-group">' +
-          '<label for="answer1"> <input type="radio" id="answer1" name="answer" required>' + currentIndex.answers[0] + '</label> <br>' +
-          '<label for="answer2"> <input type="radio" id="answer2" name="answer">' + currentIndex.answers[1] + '</label> <br>' +
-          '<label for="answer3"> <input type="radio" id="answer3" name="answer">' + currentIndex.answers[2] + '</label> <br>' +
-          '<label for="answer4"> <input type="radio" id="answer4" name="answer">' + currentIndex.answers[3] + '</label> <br>' +
-      '</fieldset>';   
+  var itemsHTML =
+  `<h3 class="question-line">${currentIndex.question}</h3>
+  <fieldset class="radio-group">
+  <label class="radio-button" for="answer1"> <input type="radio" id="answer1" name="answer" required>${currentIndex.answers[0]}</label>
+  <label class="radio-button" for="answer2"> <input type="radio" id="answer2" name="answer">${currentIndex.answers[1]}</label>
+  <label class="radio-button" for="answer3"> <input type="radio" id="answer3" name="answer">${currentIndex.answers[2]}</label>
+  <label class="radio-button" for="answer4"> <input type="radio" id="answer4" name="answer">${currentIndex.answers[3]}</label>
+  </fieldset>`
   return element.html(itemsHTML);
 }
 
@@ -154,55 +154,46 @@ function renderFinalScore(state, element){
 
 
 //Event Listeners
+function setUpListeners(){
 
-//ON START - Shows Pages 2 with Question 1 + Answers
-function displayQuestions(){
+  //ON START - Shows Page 2 with Question 1 + Answers
   $('.js-start').click(function(event) {
-  showPageTwo();
-  renderQuestions(questions, $('.js-question-set'));
-  renderQuestionNum(state, $('.js-state'));
-  renderScore(state, $('.js-score'));
+    showQuestionPage();
+    renderQuestions(questions, $('.js-question-set'));
+    renderQuestionNum(state, $('.js-state'));
+    renderCurrentScore(state, $('.js-score'));
   });
-}
 
-//ON SUBMIT - Shows Correct Answer, Changes Button to "Next"
-function displayAnswer(){
-  $('.js-button').click(function(event) { 
-  if ($('input[type=radio]').is(':checked')){
-    buttonSubmit();  
-    showAnswer();
-    }  
-  renderScore(state, $('.js-score'));
+  //ON SUBMIT - Shows Correct Answer, Changes Button to "Next"
+  $('.js-button').click(function(event) {
+    if ($('input[type=radio]').is(':checked')){
+      buttonSubmit();
+      showAnswer();
+    }
+    renderCurrentScore(state, $('.js-score'));
   });
-}
 
-//ON NEXT - Shows Next Question, Changes Button to "Submit"
-function displayNextQuestion(){
+  //ON NEXT - Shows Next Question, Changes Button to "Submit"
   $('.js-next').click(function(event) {
-  buttonNext();
-  nextQuestion();
-  renderQuestions(questions, $('.js-question-set'));
-  renderQuestionNum(state, $('.js-state'));
-  renderFinalScore(state, $('.js-results'));
+    buttonNext();
+    nextQuestion();
+    renderQuestions(questions, $('.js-question-set'));
+    renderQuestionNum(state, $('.js-state'));
+    renderFinalScore(state, $('.js-results'));
   });
-}
 
-//ON START OVER - Starts Quiz over at Page 1
-function displayStart(){
+  //ON START OVER - Starts Quiz over at Page 1
   $('.js-start-over').click(function(event) {
-  showPageOne();
+    showStartPage();
   });
 }
-
 
 $(function(){
-  renderQuestions(questions, $('.js-question-set'));
-  renderQuestionNum(state, $('.js-state'));
-  renderScore(state, $('.js-score'))
-  renderFinalScore(state, $('.js-results'))
-  displayQuestions();
-  displayAnswer();
-  displayNextQuestion();
-  displayStart();
-});
+  setUpListeners();
+  // renderQuestions(questions, $('.js-question-set')); // Renders the first question
+  // renderQuestionNum(state, $('.js-state')); // renders question header.
+  //
+  // renderCurrentScore(state, $('.js-score')) // currentScore
+  // renderFinalScore(state, $('.js-results'))
 
+});

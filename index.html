@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	</header>
-	
+
 	<main>
 	<!-- First Page Content-->
 	<div class="page-1">
@@ -38,17 +38,22 @@
 		<div class="row">
 			<div class="col-12 page">
 				<div class="js-state"></div>
-				<form action="" class="js-question-set" id="questionform" onsubmit="return false">
+				<form action=""  id="questionform">
 					<!-- Form rendered JS file -->
+					<div class="js-question-set">
+							<!-- Answers here -->
+					</div>
+					<div class="buttons">
+						<div class="button-1">
+						<input type="submit" class="submission js-button"></input>
+						</div>
+						<div class="button-2 hidden">
+						<button type="button" class="submission js-next">Next</button>
+						</div>
+					</div>
+
 				</form>
-				<div class="buttons">
-					<div class="button-1">
-					<button type="submit" class="submission js-button" form="questionform">Submit</button>
-					</div>
-					<div class="button-2 hidden">
-					<button type="button" class="submission js-next">Next</button>
-					</div>
-				</div>
+
 				<div class="score-container js-score">
 				<!-- Score rendered JS file -->
 				</div>
@@ -62,7 +67,7 @@
 				<h2 class="final-score">Final Score</h2>
 				<div class="results js-results">
 				<!-- Results rendered JS file -->
-				</div>	
+				</div>
 				<button type="button" class="submission js-start-over">Start Over</button>
 			</div>
 		</div>
