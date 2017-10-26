@@ -74,6 +74,7 @@ function showNextButton(){
   $('.next-button').removeClass('hidden');
   $('.submit-button').addClass('hidden');
   $('.js-submit-button').attr('disabled', 'disabled');
+  $('input:radio').attr('disabled', true);
 }
 
 function showSubmitButton(){
@@ -98,7 +99,7 @@ function handleAnswer(){
 // Render functions
 function renderCurrentScore(state, element){
   var scoreHTML =
-  '<p class="score">Current Score: ' + state.score + ' correct, ' + state.incorrectScore + ' incorrect</p>'
+  `<p class="score">Current Score: ${state.score} correct, ${state.incorrectScore} incorrect</p>`
   return element.html(scoreHTML);
 }
 
@@ -131,13 +132,13 @@ function renderFinalScorePage(state, element){
   $('.page-3').removeClass('hidden');
   var finalScore = (state.score/10)*100;
   if (finalScore < 50) {
-    finalText = "Freshen up your California knowledge and try again!";
+    var finalText = "Freshen up your California knowledge and try again!";
   } else if (finalScore < 90) {
-    finalText = "You know a few things about California, but how about giving it another shot?";
+    var finalText = "You know a few things about California, but how about giving it another shot?";
   } else {
-    finalText = "A true Californian! You make the state proud.";
+    var finalText = "A true Californian! You make the state proud.";
   }
-  var scoreHTML = '<h2> ' + finalScore + '% </h2> <p> ' + finalText + ' </p>'
+  var scoreHTML = `<h2>${finalScore}%</h2> <p>${finalText}</p>`
   return element.html(scoreHTML);
 }
 
@@ -165,7 +166,7 @@ function setUpListeners(){
   $('.js-next').click(function(event) {
     showSubmitButton();
     state.questionNumber++;
-    state.questionNumber<9 ? renderCurrentQuestion() : renderFinalScorePage(state, $('.js-results'));
+    state.questionNumber<=9 ? renderCurrentQuestion() : renderFinalScorePage(state, $('.js-results'));
   });
 
   //ON START OVER - Starts Quiz over at Page 1
